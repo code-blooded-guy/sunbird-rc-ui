@@ -133,7 +133,7 @@ function initConfig(config: AppConfig){
     QrCodeComponent,
     CoursesComponent,
     CertificatesComponent,
-    ViewCertificateComponent
+    ViewCertificateComponent,
 
     DocumentComponent,
     ElockerDashboardComponent

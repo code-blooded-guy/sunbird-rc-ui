@@ -26,7 +26,7 @@ import { ElockerDashboardComponent } from './elocker-dashboard/elocker-dashboard
 
 const routes: Routes = [
 // Home
-{ path: '', component: HomeComponent },
+{ path: 'home', component: HomeComponent },
 
 // Auth
 { path: 'login', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
@@ -79,9 +79,9 @@ const routes: Routes = [
 { path: 'document/view', component: DocViewComponent, canActivate: [AuthGuard] },
 { path: 'discovery', component: SearchComponent },
 { path: 'documents', component: DocumentComponent },
-{ path: 'dashboard', component: ElockerDashboardComponent },
+{ path: '', component: ElockerDashboardComponent },
 
-// Installation
+// Installation 
 { path: 'install', component: InstallComponent },
 
 
