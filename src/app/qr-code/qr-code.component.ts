@@ -18,10 +18,15 @@ export class QrCodeComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       console.log(params);
-      if (params['vcURL'] && params['key']) {
-        this.value = params['vcURL']+'?key='+params['key'];
+      if (localStorage.getItem('sluid')) {
+        this.value = localStorage.getItem('sluid');
       }
     });
+  }
+
+  close(){
+    console.log('here')
+    this.router.navigate(['documents']);
   }
 
  

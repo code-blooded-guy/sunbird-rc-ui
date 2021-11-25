@@ -23,6 +23,8 @@ import { CertificatesComponent } from './certificates/certificates.component';
 import { ViewCertificateComponent } from './certificates/view/view.component';
 import { DocumentComponent } from './document/document.component';
 import { ElockerDashboardComponent } from './elocker-dashboard/elocker-dashboard.component';
+import { DocAddComponent } from './layouts/doc-add/doc-add.component';
+import {CustomFormsComponent} from './custom-forms/custom-forms.component'
 
 const routes: Routes = [
 // Home
@@ -77,9 +79,12 @@ const routes: Routes = [
 { path: ':entity/attestation/:table', component: TablesComponent, canActivate: [AuthGuard] },
 { path: ':entity/attestation/:table/:id', component: AttestationComponent, canActivate: [AuthGuard] },
 { path: 'document/view', component: DocViewComponent, canActivate: [AuthGuard] },
+{ path: 'document/add/:document', component: DocAddComponent, canActivate: [AuthGuard] },
 { path: 'discovery', component: SearchComponent },
 { path: 'documents', component: DocumentComponent },
-{ path: '', component: ElockerDashboardComponent },
+{ path: 'dashboard', component: ElockerDashboardComponent },
+{ path: 'cf/:form', component: CustomFormsComponent },
+{ path: '', component: CustomFormsComponent },
 
 // Installation 
 { path: 'install', component: InstallComponent },

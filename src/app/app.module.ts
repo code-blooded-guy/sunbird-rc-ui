@@ -58,6 +58,8 @@ import { ViewCertificateComponent } from './certificates/view/view.component';
 import { AuthConfigService } from './authentication/auth-config.service';
 import { DocumentComponent } from './document/document.component';
 import { ElockerDashboardComponent } from './elocker-dashboard/elocker-dashboard.component';
+import { DocAddComponent } from './layouts/doc-add/doc-add.component';
+import { CustomFormsComponent } from './custom-forms/custom-forms.component';
 
 //form validations
 export function minItemsValidationMessage(err, field: FormlyFieldConfig) {
@@ -136,7 +138,9 @@ function initConfig(config: AppConfig){
     ViewCertificateComponent,
 
     DocumentComponent,
-    ElockerDashboardComponent
+    ElockerDashboardComponent,
+    DocAddComponent,
+    CustomFormsComponent
 
   ],
   imports: [
