@@ -60,6 +60,7 @@ import { DocumentComponent } from './document/document.component';
 import { ElockerDashboardComponent } from './elocker-dashboard/elocker-dashboard.component';
 import { DocAddComponent } from './layouts/doc-add/doc-add.component';
 import { CustomFormsComponent } from './custom-forms/custom-forms.component';
+import { AddDocumentComponent } from './add-document/add-document.component';
 
 //form validations
 export function minItemsValidationMessage(err, field: FormlyFieldConfig) {
@@ -140,7 +141,8 @@ function initConfig(config: AppConfig){
     DocumentComponent,
     ElockerDashboardComponent,
     DocAddComponent,
-    CustomFormsComponent
+    CustomFormsComponent,
+    AddDocumentComponent
 
   ],
   imports: [

@@ -25,10 +25,11 @@ import { DocumentComponent } from './document/document.component';
 import { ElockerDashboardComponent } from './elocker-dashboard/elocker-dashboard.component';
 import { DocAddComponent } from './layouts/doc-add/doc-add.component';
 import {CustomFormsComponent} from './custom-forms/custom-forms.component'
+import { AddDocumentComponent } from './add-document/add-document.component';
 
 const routes: Routes = [
 // Home
-{ path: 'home', component: HomeComponent },
+{ path: '', component: HomeComponent },
 
 // Auth
 { path: 'login', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
@@ -81,10 +82,11 @@ const routes: Routes = [
 { path: 'document/view', component: DocViewComponent, canActivate: [AuthGuard] },
 { path: 'document/add/:document', component: DocAddComponent, canActivate: [AuthGuard] },
 { path: 'discovery', component: SearchComponent },
-{ path: 'documents', component: DocumentComponent },
+{ path: 'documents', component: DocumentComponent, canActivate: [AuthGuard] },
+{ path: 'document/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
 { path: 'dashboard', component: ElockerDashboardComponent },
 { path: 'cf/:form', component: CustomFormsComponent },
-{ path: '', component: CustomFormsComponent },
+{ path: 'poc', component: CustomFormsComponent },
 
 // Installation 
 { path: 'install', component: InstallComponent },

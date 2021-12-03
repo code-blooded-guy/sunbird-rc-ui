@@ -80,7 +80,7 @@ export class CustomFormsComponent implements OnInit {
     this.buttonText = 'Confirm OTP'
     this.schemaloaded = true;
     this.verify = false;
-    this.redirectTo = 'cf/sluid'
+    this.redirectTo = 'documents'
     this.loadSchema();
   }
   sluid(){
@@ -95,7 +95,7 @@ export class CustomFormsComponent implements OnInit {
     this.schema["properties"] = this.property;
     this.schema.required.push('sluid')
     this.redirectTo = 'documents';
-    this.buttonText = 'Register'
+    this.buttonText = 'Get Document'
     this.schemaloaded = true;
     this.verify = true;
     this.loadSchema();
@@ -123,3 +123,6 @@ export class CustomFormsComponent implements OnInit {
 
 
 }
+
+
+ 
