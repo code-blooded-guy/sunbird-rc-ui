@@ -1,5 +1,6 @@
 .logo-text{
     font-size: large;
+    // font-weight: bold;
 }
 .navbar-light .navbar-nav .nav-link {
     color: #050505;
@@ -24,14 +25,6 @@
     background-color: white;
     border-color: #efefef;
 }
-.dash-card {
-    border: 1;
-    box-shadow: 0 10px 20px 0 rgb(0 0 0 / 5%);
-    background-color: white;
-    border-color: #efefef;
-    max-width: 300px;
-    display: inline-grid;
-}
 hr{
     margin: 0;
     margin-bottom: -20px;
@@ -44,8 +37,18 @@ hr{
     margin-bottom: -25px;
 }
 
+// .header {
+// 	position: fixed;
+// 	top: 0;
+// 	width: 100%;
+// 	padding: 15px;
+// 	background-color: #212121;
+// 	text-align: center;
+// }
+
 .notification {
     text-decoration: none;
+    // padding: 15px 26px;
     position: relative;
     display: inline-block;
     border-radius: 2px;
@@ -74,6 +77,13 @@ hr{
     max-width: 23%;
 }
 
-.nav-b {
-    bottom: 2px;
+nav {
+    overflow: hidden;
+    // padding: 1em;
+    position: fixed;
+    top: 0px;
+    display: block;
+    width: 100%;
+    z-index: 1;
+    height: 60px;
 }

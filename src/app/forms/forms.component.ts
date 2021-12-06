@@ -7,9 +7,14 @@ import { FormlyJsonschema } from '@ngx-formly/core/json-schema';
 import { JSONSchema7 } from "json-schema";
 import { GeneralService } from '../services/general/general.service';
 import { Location } from '@angular/common'
+import { title } from 'process';
+import { combineLatest, startWith, switchMap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { of } from 'rxjs';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { of as observableOf } from 'rxjs';
+// import { Observable, of } from 'rxjs';
+import { delay, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-forms',
@@ -35,6 +40,7 @@ export class FormsComponent implements OnInit {
   property = {};
   ordering;
   required = [];
+  oldVal: string;
   entityId: string;
   form2: FormGroup;
   model = {};
@@ -105,6 +111,9 @@ export class FormsComponent implements OnInit {
       if (this.formSchema.redirectTo) {
         this.redirectTo = this.formSchema.redirectTo;
       }
+      // if (this.identifier != null) {
+      //   this.getData()
+      // }
 
       if (this.formSchema.type) {
         this.type = this.formSchema.type
@@ -173,10 +182,14 @@ export class FormsComponent implements OnInit {
         this.loadSchema();
       },
         (error) => {
+          //Schema Error callback
+          console.error('Something went wrong with Schema URL or Path not found')
           this.toastMsg.error('error', 'Something went wrong with Schema URL or Path not found')
         });
 
     }, (error) => {
+      //Form Error callback
+      console.error('forms.json not found in src/assets/config/ - You can refer to examples folder to create the file')
       this.toastMsg.error('error', 'forms.json not found in src/assets/config/ - You can refer to examples folder to create the file')
     })
   }
@@ -186,14 +199,14 @@ export class FormsComponent implements OnInit {
     this.options = {};
     this.fields = [this.formlyJsonschema.toFieldConfig(this.schema)];
 
-    if (this.privacyCheck) {
+    if(this.privacyCheck){
       this.visilibity(this.fields);
     }
 
-    if (this.headingTitle) {
+    if(this.headingTitle){
       this.fields[0].templateOptions.label = '';
     }
-
+    
     if (this.add) {
       this.model = {};
     }
@@ -204,7 +217,7 @@ export class FormsComponent implements OnInit {
 
     if (fields[0].fieldGroup.length > 1 && fields[0].fieldGroup[0].type == "object") {
 
-      fields[0].fieldGroup.forEach(fieldObj => {
+     fields[0].fieldGroup.forEach(fieldObj => {
 
         if (this.privateFields.length || this.internalFields.length) {
 
@@ -264,7 +277,10 @@ export class FormsComponent implements OnInit {
         }
 
         ref_properties[reffield.name] = this.responseData.definitions[field.children.definition].properties[reffield.name];
+
+        // this.property[field.children.definition].properties[reffield.name] = this.responseData.definitions[field.children.definition].properties[reffield.name];
       });
+      // this.property[field.name] = ref_properties;
 
       if (this.responseData.definitions[fieldset.definition].properties.hasOwnProperty(field.name)) {
         this.responseData.definitions[fieldset.definition].properties[field.name].properties = ref_properties;
@@ -296,18 +312,22 @@ export class FormsComponent implements OnInit {
 
           for (const key1 in tempArr[key].properties) {
             nastedArr.push({ 'name': key1, 'type': tempArr[key].properties[key1].type });
-          };
+          }; // {0:"a", 1:"b", 2:"c"}
           delete this.responseData.definitions[fieldName.replace(/^./, fieldName[0].toUpperCase())].properties[key]['$ref'];
 
           let temp2 = {
             children: {
-              definition: fieldName.replace(/^./, fieldName[0].toUpperCase()) + '.properties.' + key,
+              definition: fieldName.replace(/^./, fieldName[0].toUpperCase()) + '.properties.' + key, //fieldName,
               fields: nastedArr
             },
             name: key.toLowerCase()
           }
 
+
           temp_arr_fields.push(temp2);
+
+          // this.checkProperty(fieldset, temp2);
+
           temp2.children.fields.forEach(reffield => {
             this.addChildWidget(reffield, fieldName, key);
 
@@ -363,8 +383,11 @@ export class FormsComponent implements OnInit {
         }
       });
     } else {
+      // institute ----
       let res = this.responseData.definitions[fieldset.definition].properties;
+
       this.nastedChild(fieldset, fieldset.definition, res);
+      // this.definations[fieldset.definition].properties[field.name] = this.responseData.definitions[fieldset.definition].properties[field.name];
     }
   }
 
@@ -383,6 +406,7 @@ export class FormsComponent implements OnInit {
         responseData.widget.formlyConfig.templateOptions['attributes'] = {}
       }
       responseData.widget.formlyConfig.templateOptions['addonRight'] = {
+        // text: 'Only by consent',
         class: "private-access"
       }
       responseData.widget.formlyConfig.templateOptions['attributes'] = {
@@ -397,6 +421,7 @@ export class FormsComponent implements OnInit {
         responseData.widget.formlyConfig.templateOptions['attributes'] = {}
       }
       responseData.widget.formlyConfig.templateOptions['addonRight'] = {
+        //text: 'Only by me',
         class: "internal-access"
       }
       responseData.widget.formlyConfig.templateOptions['attributes'] = {
@@ -470,6 +495,7 @@ export class FormsComponent implements OnInit {
           if (this.privateFields.length || this.internalFields.length) {
             this.responseData.definitions[fieldset.definition].properties[field.name]['widget']['formlyConfig']['templateOptions'] = {
               addonRight: {
+                // text: 'Anyone',
                 class: "public-access"
               },
               attributes: {
@@ -580,9 +606,13 @@ export class FormsComponent implements OnInit {
                 });
               }
               else if (field.autofill.method === 'POST') {
-                var datapath = this.findPath(field.autofill.body, "{{value}}", '')
+                var datapath = this.findPath(field.autofill.body, "{{value}}", '') ;
+
+                datapath = (datapath == false) ? this.findPath(field.autofill.body, this.oldVal, '') : this.findPath(field.autofill.body, "{{value}}", '');
+
                 if (datapath) {
-                  var dataobject = this.setPathValue(field.autofill.body, datapath, control.value)
+                  var dataobject = this.setPathValue(field.autofill.body, datapath, control.value);
+                  this.oldVal =  control.value;
                   this.generalService.postPrefillData(field.autofill.apiURL, dataobject).subscribe((res) => {
                     if (Array.isArray(res)) {
                       res = res[0]
@@ -625,7 +655,13 @@ export class FormsComponent implements OnInit {
           if (term || term != '') {
             var datapath = this.findPath(field.autocomplete.body, dataval, '')
             this.setPathValue(field.autocomplete.body, datapath, term)
-
+            // var formData = {
+            //   "filters": {},
+            //   "limit": 20,
+            //   "offset": 0
+            // }
+            // formData.filters[field.key] = {};
+            // formData.filters[field.key]["contains"] = term
             dataval = term;
             this.generalService.postData(field.autocomplete.apiURL, field.autocomplete.body).subscribe(async (res) => {
               let items = res;
@@ -640,7 +676,7 @@ export class FormsComponent implements OnInit {
         }
       }
       if (field.type) {
-
+        
         if (field.type === 'multiselect') {
           this.responseData.definitions[fieldset.definition].properties[field.name]['widget']['formlyConfig']['type'] = field.type;
           this.responseData.definitions[fieldset.definition].properties[field.name]['widget']['formlyConfig']['templateOptions']['multiple'] = true;
@@ -651,6 +687,7 @@ export class FormsComponent implements OnInit {
           }
 
           this.responseData.definitions[fieldset.definition].properties[field.name]['widget']['formlyConfig']['templateOptions']['options'] = [];
+          // console.log("this.responseData.definitions[fieldset.definition].properties[field.name]",this.responseData.definitions[fieldset.definition].properties[field.name]['items']['enum'])
           this.responseData.definitions[fieldset.definition].properties[field.name]['items']['enum'].forEach(enumval => {
             this.responseData.definitions[fieldset.definition].properties[field.name]['widget']['formlyConfig']['templateOptions']['options'].push({ label: enumval, value: enumval })
           });
@@ -731,6 +768,7 @@ export class FormsComponent implements OnInit {
           this.res.properties[field.name]['widget']['formlyConfig']['templateOptions']['attributes'] = {}
         }
         this.res.properties[field.name]['widget']['formlyConfig']['templateOptions']['addonRight'] = {
+          //text: 'Anyone',
           class: "public-access"
         }
         this.res.properties[field.name]['widget']['formlyConfig']['templateOptions']['attributes'] = {
@@ -788,12 +826,15 @@ export class FormsComponent implements OnInit {
 
             this.model[fileField] = documents_list;
             if (this.type && this.type === 'entity') {
-
+              // this.customFields.forEach(element => {
+              //   delete this.model[element];
+              // });
               if (this.identifier != null) {
                 this.updateData()
               } else {
                 this.postData()
               }
+              // this.getData()
             }
             else if (this.type && this.type.includes("property")) {
               var property = this.type.split(":")[1];
@@ -807,8 +848,11 @@ export class FormsComponent implements OnInit {
               } else {
                 this.apiUrl = (url.join("/")) + '?send=false';
               }
-
+              // this.customFields.forEach(element => {
+              //   delete this.model[element];
+              // });
               this.postData()
+              // this.getData()
             }
           }, (err) => {
             console.log(err);
@@ -817,12 +861,15 @@ export class FormsComponent implements OnInit {
         }
         else {
           if (this.type && this.type === 'entity') {
-
+            // this.customFields.forEach(element => {
+            //   delete this.model[element];
+            // });
             if (this.identifier != null) {
               this.updateData()
             } else {
               this.postData()
             }
+            // this.getData()
           }
           else if (this.type && this.type.includes("property")) {
             var property = this.type.split(":")[1];
@@ -855,12 +902,15 @@ export class FormsComponent implements OnInit {
     }
     else {
       if (this.type && this.type === 'entity') {
-
+        // this.customFields.forEach(element => {
+        //   delete this.model[element];
+        // });
         if (this.identifier != null) {
           this.updateData()
         } else {
           this.postData()
         }
+        // this.getData()
       }
       else if (this.type && this.type.includes("property")) {
         var property = this.type.split(":")[1];
@@ -880,7 +930,9 @@ export class FormsComponent implements OnInit {
         } else {
           this.apiUrl = (url.join("/")) + '?send=false';
         }
-
+        // this.customFields.forEach(element => {
+        //   delete this.model[element];
+        // });
 
         if (this.identifier != null && this.entityId != undefined) {
           this.updateClaims()
@@ -888,8 +940,13 @@ export class FormsComponent implements OnInit {
           this.postData()
         }
 
+        // this.getData()
       }
     }
+
+
+    // const url = this.router.createUrlTree(['/profile/institute'])
+    // window.open(this.router.createUrlTree([this.redirectTo]).toString(), '_blank')
   }
 
   filtersearchResult(term: string) {
@@ -908,6 +965,8 @@ export class FormsComponent implements OnInit {
         items = await items.filter(x => x.instituteName.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
         if (items) {
           return items;
+          // return observableOf(items);
+          // return of(items).pipe(delay(500));
         }
       });
     }
@@ -915,6 +974,7 @@ export class FormsComponent implements OnInit {
 
   async getNotes(claimId) {
     await this.generalService.getData("Teacher/claims/" + claimId).subscribe((res) => {
+      console.log("res", res)
       this.notes = res.notes;
     })
   }
@@ -927,6 +987,7 @@ export class FormsComponent implements OnInit {
       get_url = this.apiUrl
     }
     this.generalService.getData(get_url).subscribe((res) => {
+      // if(this.property[definition])
       res = (res[0]) ? res[0] : res;
       if (this.propertyName && this.entityId) {
         this.getNotes(res._osClaimId);

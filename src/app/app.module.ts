@@ -47,12 +47,15 @@ import { AppConfig } from './app.config';
 import { PanelWrapperComponent } from './forms/types/group.type';
 import { LogoutComponent } from './authentication/logout/logout.component';
 import { SearchComponent } from '../app/discovery/search/search.component';
+import { IssueCertificateComponent } from './issue-certificate/issue-certificate.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { VerifyComponent } from './verify/verify.component';
+import { QrCodeComponent } from './qr-code/qr-code.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { CoursesComponent } from './courses/courses.component';
+import { CertificatesComponent } from './certificates/certificates.component';
+import { ViewCertificateComponent } from './certificates/view/view.component';
 import { AuthConfigService } from './authentication/auth-config.service';
-import { DocumentComponent } from './document/document.component';
-import { ElockerDashboardComponent } from './elocker-dashboard/elocker-dashboard.component';
-import { DocAddComponent } from './layouts/doc-add/doc-add.component';
-import { CustomFormsComponent } from './custom-forms/custom-forms.component';
-import { AddDocumentComponent } from './add-document/add-document.component';
 
 //form validations
 export function minItemsValidationMessage(err, field: FormlyFieldConfig) {
@@ -121,21 +124,7 @@ function initConfig(config: AppConfig){
     FormlyFieldNgSelect,
     InstallComponent,
     HomeComponent,
-    LogoutComponent,
-
-    IssueCertificateComponent,
-    VerifyComponent,
-    QrCodeComponent,
-    CoursesComponent,
-    CertificatesComponent,
-    ViewCertificateComponent,
-
-    DocumentComponent,
-    ElockerDashboardComponent,
-    DocAddComponent,
-    CustomFormsComponent,
-    AddDocumentComponent
-
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -151,6 +140,7 @@ function initConfig(config: AppConfig){
     Bootstrap4FrameworkModule,
     AngularMultiSelectModule,
     NgSelectModule,
+    NgxQRCodeModule,
     FormlyModule.forRoot({
       extras: { resetFieldOnHide: true },
       wrappers: [{ name: 'form-field-horizontal', component: FormlyHorizontalWrapper },
@@ -194,10 +184,11 @@ function initConfig(config: AppConfig){
       ],
     }),
     ToastrModule.forRoot({
-      positionClass: 'toast-bottom-full-width',
+      positionClass: 'toast-bottom-center',
     preventDuplicates: true,
     }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    ZXingScannerModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [],
