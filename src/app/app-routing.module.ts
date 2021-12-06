@@ -14,19 +14,6 @@ import { HomeComponent } from './home/home.component';
 import { KeycloakloginComponent } from './authentication/login/keycloaklogin.component';
 import { LogoutComponent } from './authentication/logout/logout.component';
   import { SearchComponent } from './discovery/search/search.component';
-
-import { IssueCertificateComponent } from './issue-certificate/issue-certificate.component';
-import { VerifyComponent } from './verify/verify.component';
-import { QrCodeComponent } from './qr-code/qr-code.component';
-import { CoursesComponent } from './courses/courses.component';
-import { CertificatesComponent } from './certificates/certificates.component';
-import { ViewCertificateComponent } from './certificates/view/view.component';
-import { DocumentComponent } from './document/document.component';
-import { ElockerDashboardComponent } from './elocker-dashboard/elocker-dashboard.component';
-import { DocAddComponent } from './layouts/doc-add/doc-add.component';
-import {CustomFormsComponent} from './custom-forms/custom-forms.component'
-import { AddDocumentComponent } from './add-document/add-document.component';
-
 const routes: Routes = [
 // Home
 { path: '', component: HomeComponent },
@@ -80,18 +67,9 @@ const routes: Routes = [
 { path: ':entity/attestation/:table', component: TablesComponent, canActivate: [AuthGuard] },
 { path: ':entity/attestation/:table/:id', component: AttestationComponent, canActivate: [AuthGuard] },
 { path: 'document/view', component: DocViewComponent, canActivate: [AuthGuard] },
-{ path: 'document/add/:document', component: DocAddComponent, canActivate: [AuthGuard] },
 { path: 'discovery', component: SearchComponent },
-<<<<<<< HEAD
-=======
-{ path: 'documents', component: DocumentComponent, canActivate: [AuthGuard] },
-{ path: 'document/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
-{ path: 'dashboard', component: ElockerDashboardComponent },
-{ path: 'cf/:form', component: CustomFormsComponent },
-{ path: 'poc', component: CustomFormsComponent },
->>>>>>> origin/elocker
 
-// Installation 
+// Installation
 { path: 'install', component: InstallComponent },
 ];
 
