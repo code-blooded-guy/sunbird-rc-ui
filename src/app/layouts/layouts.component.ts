@@ -53,6 +53,7 @@ export class LayoutsComponent implements OnInit, OnChanges {
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.route.params.subscribe(params => {
+      console.log(params);
     this.params = params;
       if (params['layout'] != undefined) {
         this.layout = params['layout']
@@ -100,7 +101,6 @@ export class LayoutsComponent implements OnInit, OnChanges {
       console.error('Something went wrong with Schema URL or Path not found')
     });
   }
-
 
   addData() {
     this.layoutSchema.blocks.forEach(block => {
@@ -274,6 +274,7 @@ export class LayoutsComponent implements OnInit, OnChanges {
       }
       block.items.push(this.property)
       this.Data.push(block)
+      console.log("main",this.Data);
       this.schemaloaded = true;
     });
   }

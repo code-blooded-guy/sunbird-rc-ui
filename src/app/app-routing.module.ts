@@ -68,9 +68,25 @@ const routes: Routes = [
 { path: ':entity/attestation/:table/:id', component: AttestationComponent, canActivate: [AuthGuard] },
 { path: 'document/view', component: DocViewComponent, canActivate: [AuthGuard] },
 { path: 'discovery', component: SearchComponent },
+{ path: 'documents', component: DocumentComponent, canActivate: [AuthGuard] },
+{ path: 'document/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
+{ path: 'dashboard', component: ElockerDashboardComponent },
+{ path: 'cf/:form', component: CustomFormsComponent },
+{ path: 'poc', component: CustomFormsComponent },
 
 // Installation
 { path: 'install', component: InstallComponent },
+
+
+// Custom
+{ path: 'issue-certificate', component: IssueCertificateComponent, canActivate: [AuthGuard] },
+{ path: 'verify', component: VerifyComponent },
+{ path: 'credentials', component: QrCodeComponent },
+{ path: ':entity/courses', component: CoursesComponent },
+{ path: ':entity/skills', component: CoursesComponent },
+{ path: ':entity/certificates', component: CertificatesComponent},
+{ path: ':entity/certificates/:id', component: ViewCertificateComponent}
+
 ];
 
 @NgModule({
