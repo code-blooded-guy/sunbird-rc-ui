@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./keycloaklogin.component.css']
 })
 export class KeycloakloginComponent implements OnInit {
-  user : any;
+  user: any;
   entity: string;
-  profileUrl: string  = '';
+  profileUrl: string = '';
   constructor(
     public keycloakService: KeycloakService,
     public router: Router
@@ -18,18 +18,24 @@ export class KeycloakloginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.keycloakService.loadUserProfile().then((res)=>{
+    this.keycloakService.loadUserProfile().then((res) => {
       console.log(res['attributes'].entity[0]);
 
       this.entity = res['attributes'].entity[0];
     });
     this.user = this.keycloakService.getUsername();
-    this.keycloakService.getToken().then((token)=>{
+    this.keycloakService.getToken().then((token) => {
       console.log('keyCloak teacher token - ', token);
       localStorage.setItem('token', token);
       localStorage.setItem('loggedInUser', this.user);
-     // alert(this.entity);
-     this.profileUrl = '/profile/'+this.entity;
+      // alert(this.entity);
+      if (this.entity === 'User') {
+        this.profileUrl = '/documents';
+      }
+      else {
+        this.profileUrl = '/profile/' + this.entity;
+      }
+
 
       // switch(this.entity)
       // {

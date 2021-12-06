@@ -1,0 +1,55 @@
+
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+      <div class="container my-2" style="
+      padding-bottom: 2px;
+  ">
+          <div class=" d-inline ">
+              <h3 class="mb-1 text-body">
+                 View Cetrificate
+              </h3>
+          </div>
+      </div>
+      <div>
+          <button type="button" (click)="close()" class="close float-right"><span _ngcontent-fni-c481=""
+              aria-hidden="true">×</span></button>
+      </div>
+      
+  </nav>
+</div>
+<div class="container" style="margin-top: 20px;">
+  <div class="card mb-3">
+      <div class="card-body">
+          
+          <dl class="d-inline">
+              <div class="row">
+                  <h2  style="text-align: -webkit-center;">SLUID</h2>
+                  
+                    <ngx-qrcode
+                    [elementType]="elementType"
+                    [errorCorrectionLevel]="correctionLevel"
+                    [value]="value"
+                    cssClass="bshadow" style="
+                    text-align: -webkit-center;">
+                  </ngx-qrcode>
+               
+                  <div class="col ml-2" style="
+                  margin-top: 25px;text-align: -webkit-center;
+              ">
+                      <dt class="fs-7 text-muted">Name</dt>
+                      <dd class="text-body "><b>Sujal Fonseca</b></dd>
+                     
+                      <dt class="fs-7 text-muted">SLUID Number</dt>
+                      <dd class="text-body "><b>{{value}}</b></dd>
+        
+                      <dt class="fs-7 text-muted">Date of birth</dt>
+                      <dd class="text-body "><b>27.08.1995</b></dd>
+                      <hr>
+                      <dt class="fs-7 text-muted">issued By</dt>
+                      <dd class="text-body "><b>Government Department</b></dd>
+                  </div>
+              </div>
+          </dl>   
+      </div>
+  </div>
+</div>
