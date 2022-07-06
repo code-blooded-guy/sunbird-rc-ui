@@ -8,6 +8,7 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { SchemaService } from '../../services/data/schema.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'add-certificate',
@@ -59,6 +60,7 @@ export class AddCertificateComponent implements OnInit {
     private route: ActivatedRoute,
     private formlyJsonschema: FormlyJsonschema,
     public generalService: GeneralService,
+    public translate: TranslateService,
     public http: HttpClient) { }
 
   ngOnInit(): void {

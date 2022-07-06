@@ -1,12 +1,13 @@
-<router-outlet></router-outlet>
 <ng-template [ngIf]="isFooter">
   <div class="pt-70"></div>
-  <footer class="bg-dark fixed-bottom">
-    <div class="container-fluid">
-      <div class="p-3">
+  <footer class="footer fixed-bottom">
+    
         <a class="text-muted fs-7" href="#">&copy; {{footerText}}</a>
-      </div>
-    </div>
+     <div>
+      <a style="padding-left:22px;" href=""><img src="https://sunbird-certificate-demo.xiv.in/auth/resources/sr2et/login/sunbird-rc/img/twitter.svg" alt=""></a>
+      <a style="padding-left:22px;" href=""><img src="https://sunbird-certificate-demo.xiv.in/auth/resources/sr2et/login/sunbird-rc/img/facebook.svg" alt=""></a>
+      <a style="padding-left:22px;" href=""><img src="https://sunbird-certificate-demo.xiv.in/auth/resources/sr2et/login/sunbird-rc/img/youtube.svg" alt=""></a>
+     </div>
   </footer>
 </ng-template>
-
+<router-outlet></router-outlet>

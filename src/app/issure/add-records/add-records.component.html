@@ -1,6 +1,6 @@
 <app-header [headerFor]='headerName'></app-header>
  <br />
-<!--
+
 <div class="container">
 
     <div class="d-flex mt-3 mb-3">
@@ -16,7 +16,7 @@
         <button type="submit" class="btn btn-primary float-end submit-button" [disabled]="!form2.valid">Save </button>
 
     </form>
-</div> -->
+</div> 
 
 <div class="container">
 <br />
@@ -26,7 +26,7 @@
         <a  href="" class="line-height32" onClick="history.go(-1); return false;"><i
             class="fa fa-angle-left primary-text mt-2"></i> </a> &nbsp; &nbsp;
             
-        <span class="heading-2">Add Record</span>
+        <span class="heading-2">{{'ADD_RECORD'| translate}}</span>
         
     </div>
 
@@ -35,8 +35,8 @@
     <div class="container mt-3">
         <form [formGroup]="form2" (ngSubmit)="submit()" *ngIf="fields">
             <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form2"></formly-form>
-            <button type="button" onClick="history.go(-1);" class="btn btn-sec-bg">Cancel</button>
-            <button type="submit" class="btn btn-primary float-end submit-button" [disabled]="!form2.valid">Save </button>
+            <button type="button" onClick="history.go(-1);" class="btn btn-sec-bg">{{'CANCEL'| translate}}</button>
+            <button type="submit" class="btn btn-primary float-end submit-button" [disabled]="!form2.valid">{{'SAVE'| translate}} </button>
 
         </form>
     </div>

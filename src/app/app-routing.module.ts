@@ -27,6 +27,9 @@ import { AddCertificateComponent } from './issure/add-certificate/add-certificat
 import { GetRecordsComponent } from './issure/get-records/get-records.component';
 import { AddRecordsComponent } from './issure/add-records/add-records.component';
 import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
+import { PdfViewComponent } from './issure/pdf-view/pdf-view.component';
+import { PdfViewTwoComponent } from './issure/get-records/pdf-view-two/pdf-view-two.component';
+
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 // import { FaqComponent } from './custom-components/faq/faq.component';
 const routes: Routes = [
@@ -108,8 +111,11 @@ const routes: Routes = [
 { path: 'certificate', component: AddCertificateComponent , canActivate: [AuthGuard] },
 
  { path: 'preview-html', component: PreviewHtmlComponent  , canActivate: [AuthGuard] },
+ { path: 'pdf-view', component: PdfViewComponent  , canActivate: [AuthGuard] },
+ { path: 'pdf-view/:document/:id', component: PdfViewComponent  , canActivate: [AuthGuard] },
+ { path: 'pdf-view-two', component: PdfViewTwoComponent  , canActivate: [AuthGuard] },
 
-
+ 
 
 
 // Installation

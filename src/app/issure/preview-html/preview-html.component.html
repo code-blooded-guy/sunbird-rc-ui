@@ -3,7 +3,7 @@
         <span (click)="back();">
             <i class="fa fa-angle-left primary-text"></i>
         </span>
-        <span class="heading-2 ml-2">Edit Template</span>
+        <span class="heading-2 ml-2">{{'EDIT_TEMPLATE' | translate}}</span>
     </nav>
 
 
@@ -16,20 +16,20 @@
             <div class="preview-footer">
                 <!-- <button class="btn btn-sec-bg submit-button mx-3">Preview on email</button> -->
                 <!-- <button (click)="cancel()" class="btn btn-sec-bg submit-button">Preview on eLocker</button> -->
-                <button data-toggle="modal" data-target="#prewiewProfile" class="btn text-capitalize float-end btn-primary btn-primary-sm p1">Save</button>
+                <button data-toggle="modal" data-target="#prewiewProfile" class="btn text-capitalize float-end btn-primary btn-primary-sm p1">{{'SAVE' | translate}}</button>
             </div>
             <div class=" p-0 setHeight border-right mtn-28">
                 <ul class="nav nav-tabs ui-tabs font-600 pt-3">
-                    <li class="active col-sm-5"><a href="#htmlDiv" class="active heading-2" data-toggle="tab">Design</a>
+                    <li class="active col-sm-5"><a href="#htmlDiv" class="active heading-2" data-toggle="tab">{{'DESIGN' | translate}}</a>
                     </li>
-                    <li class="col-sm-6"><a href="#schenaDiv" class="heading-2" data-toggle="tab">Schema</a>
+                    <li class="col-sm-6"><a href="#schenaDiv" class="heading-2" data-toggle="tab">{{'SCHEMA' | translate}}</a>
                     </li>
                 </ul>
 
                 <div class="tab-content">
                     <div class="tab-pane active" id="htmlDiv">
                         <div class="d-flex flex-justify-between py-1 px-4">
-                            <div class="heading-2">HTML</div>
+                            <div class="heading-2">{{'HTML' | translate}}</div>
                             <!-- <button class="fs-14 btn btn-sec-bg submit-button float-end">
                                     <i aria-hidden="true" class="fa fa-pencil-square-o"></i> Edit 
                                 </button> -->
@@ -58,7 +58,7 @@
                     </div>
                     <div class="tab-pane fade" id="schenaDiv">
                         <div class="d-flex flex-justify-between py-1 px-4">
-                            <div class="heading-2">JSON Schema</div>
+                            <div class="heading-2">{{'JSON_SCHEMA' | translate}}</div>
                             <!-- <button class="fs-14 btn btn-sec-bg submit-button float-end">
                                     <i aria-hidden="true" class="fa fa-pencil-square-o"></i> Advance Editor 
                                 </button> -->
@@ -114,19 +114,19 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header pt-4 border-0">
-                            <h3 class="heading-5">Save Document</h3>
+                            <h3 class="heading-5">{{'SAVE_DOCUMENT' | translate}}</h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="container mt-4">
                             <div class="mb-4">
-                                <p class="heading-4 font-700 mb-05">Name</p>
+                                <p class="heading-4 font-700 mb-05">{{'NAME' | translate}}</p>
                                 <input [(ngModel)]="templateName" class="w-100 input-field p14 p-3 inputField"
                                     placeholder="Enter Document name" type="text" />
                             </div>
 
                             <div class="mt-2">
-                                <p class="heading-4 font-700 mb-05">Description<span
+                                <p class="heading-4 font-700 mb-05">{{'DESCRIPTION' | translate}}<span
                                         class="text-muted">(optional)</span></p>
                                 <textarea [(ngModel)]="description"
                                     class="w-100 desc py-2 input-field p14 pl-3 inputField"
@@ -136,9 +136,9 @@
 
                             <div class="mt-4">
                                 <button (click)="submit()" data-dismiss="modal" aria-label="Close"
-                                    class="btn text-capitalize float-end btn-primary btn-primary-sm p1">Save</button>
+                                    class="btn text-capitalize float-end btn-primary btn-primary-sm p1">{{'SAVE' | translate}}</button>
                                 <button class="close" data-dismiss="modal" aria-label="Close"
-                                    class="btn text-capitalize float-end btn-primary btn-primary-sm p1 sb-text-primary mr-2 bg-none">Cancel</button>
+                                    class="btn text-capitalize float-end btn-primary btn-primary-sm p1 sb-text-primary mr-2 bg-none">{{'CANCEL' | translate}}</button>
                             </div>
                         </div>
                     </div>

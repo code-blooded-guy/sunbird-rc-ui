@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AnyARecord } from 'dns';
 import { map } from 'rxjs/operators';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { TranslateService } from '@ngx-translate/core';
 declare var grapesjs: any;
 
 
@@ -37,7 +38,7 @@ export class PreviewHtmlComponent implements OnInit {
     external_plugins: { mentions: string; }; templates: { title: string; description: string; content: string; }[]; toolbar: string; content_css: string[];
   };
 
-  constructor(public router: Router, public route: ActivatedRoute,
+  constructor(public router: Router, public route: ActivatedRoute,public translate: TranslateService,
     public generalService: GeneralService) {
 
     this.editorOptions = new JsonEditorOptions()
@@ -267,7 +268,7 @@ export class PreviewHtmlComponent implements OnInit {
       });
 
 
-      this.schemaContent._osConfig['certificateTemplates'] = { html: 'did:path:' + res.documentLocations[0] }
+      this.schemaContent._osConfig['certificateTemplates'] = { html: 'minio://' + res.documentLocations[0] }
 
       let result = JSON.stringify(this.schemaContent);
 

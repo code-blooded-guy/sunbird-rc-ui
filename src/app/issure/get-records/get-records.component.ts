@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-get-records',
@@ -15,13 +16,18 @@ export class GetRecordsComponent implements OnInit {
   vcOsid: any;
   headerName: string = 'records'
   //headerName : string = 'issuer';
-
+  newName="hello";
   documentName: string;
   pdfName: any;
-  constructor(public router: Router, public route: ActivatedRoute,
-    public generalService: GeneralService, private http: HttpClient,) { 
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+    
+    public generalService: GeneralService,
+    public translate: TranslateService,
+    public http: HttpClient) { 
       this.documentName = this.route.snapshot.paramMap.get('document'); 
-     
+      console.log(this.documentName);
 
    // this.item = this.router.getCurrentNavigation().extras.state.item;
 
@@ -79,6 +85,10 @@ this.getRecords();
 
    
   }
+  onPress(){
+    this.router.navigateByUrl['/pdf-view'];
+    
+  }
 
   downloadPDF() {
 
@@ -89,13 +99,14 @@ this.getRecords();
 
     let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
     // post or get depending on your requirement
-    this.http.get('https://sunbird-certificate-demo.xiv.in/registry/api/v1/' + this.documentName + '/' +  this.vcOsid, requestOptions).pipe(map((data: any) => {
+    this.http.get('http://localhost:4200/registry/api/v1/' + this.documentName + '/' +  this.vcOsid, requestOptions).pipe(map((data: any) => {
 
         let blob = new Blob([data], {
             type: 'application/pdf' // must match the Accept type
             // type: 'application/octet-stream' // for excel 
         });
         var link = document.createElement('a');
+        console.log(blob);
         link.href = window.URL.createObjectURL(blob);
         link.download = this.pdfName + '.pdf';
         link.click();

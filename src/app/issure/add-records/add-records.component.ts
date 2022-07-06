@@ -8,6 +8,7 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { SchemaService } from '../../services/data/schema.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-add-records',
   templateUrl: './add-records.component.html',
@@ -41,6 +42,7 @@ export class AddRecordsComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     private formlyJsonschema: FormlyJsonschema,
+    public translate: TranslateService,
     public generalService: GeneralService,
     public http: HttpClient) {
     this.schemaName = this.route.snapshot.paramMap.get('document');

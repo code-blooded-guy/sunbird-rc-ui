@@ -1,36 +1,61 @@
 <app-header [headerFor]='headerName'></app-header>
 
-<div class="card mt-5">
-    <div class="card-body ml-5 mt-3 d-flex flex-justify-between">
-        <div>
-            <img *ngIf="issuerInfo?.logoUrl"  src="{{issuerInfo?.logoUrl}}" class="logo" alt='logo Url'/>
-            <p *ngIf="issuerInfo?.name" class="p14 mb-1">{{issuerInfo?.name}}</p>
-            <p *ngIf="issuerInfo?.websiteUrl" class="p14 mb-1"><a href="{{issuerInfo?.websiteUrl}}"  target="_blank">{{issuerInfo?.websiteUrl}}</a></p>
+<!-- <div class="card card-body mt-5  dashboard-main-header">
+            <div class="container">
+        <div class="dashboard-logo-n-title-flex">
+                    <img  *ngIf="issuerInfo?.logoUrl"  src="{{issuerInfo?.logoUrl}}" class="dashboard-logo" alt='logo Url'/>
+                 
+                    <div >
+                        <p  class="dashboard-title-n-url capitalize" *ngIf="issuerInfo?.name"  >{{issuerInfo?.name}} </p>
+                        <p  class="dashboard-url" *ngIf="issuerInfo?.websiteUrl" ><a href="{{issuerInfo?.websiteUrl}}"  target="_blank">{{issuerInfo?.websiteUrl}}</a></p>
+                    </div>
         </div>
-        <div>
-            <button class="mt-23 fs-14 btn btn-sec-bg submit-button float-end" data-toggle="modal" data-target="#prewiewProfile" (click)="getFormJSON()">
-                <i aria-hidden="true" class="fa fa-pencil-square-o"></i> Edit 
-            </button>
+            
+        <div class="class2">
+                 <button class=" fs-14 btn btn-sec-bg submit-button float-end edit-btn" data-toggle="modal" data-target="#prewiewProfile" (click)="getFormJSON()">
+                 <i aria-hidden="true" class="fa fa-pencil-square-o"></i> {{'EDIT' | translate}}
+                 </button>
         </div>
+      </div>
+</div> -->
+
+
+
+<div class="card card-body mt-4 px-0">
+  <div class="container mt-3 mb-2 px-0 ">  
+    <div class="dashboard-main-header">
+    <div class="dashboard-logo-n-title-flex mx-0">
+        <img  *ngIf="issuerInfo?.logoUrl"  src="{{issuerInfo?.logoUrl}}" class="dashboard-logo" alt='logo Url'/>
+
+        <div class="dashboard-title-n-url">
+        <p class="capitalize mx-0"  *ngIf="issuerInfo?.name"  >{{issuerInfo?.name}} </p>
+        <p  class="dashboard-url" *ngIf="issuerInfo?.websiteUrl" ><a href="{{issuerInfo?.websiteUrl}}"  target="_blank">{{issuerInfo?.websiteUrl}}</a></p>
+      </div>
     </div>
+        <div>
+        <button class="fs-14 btn btn-sec-bg submit-button edit-btn" data-toggle="modal" data-target="#prewiewProfile" (click)="getFormJSON()">
+          <i aria-hidden="true" class="fa fa-pencil-square-o"></i> {{'EDIT' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
 <div class="container">
     <div class="row">
         <div class="mt-4 mb-3 px-0">
-            <span class="heading-2">Documents</span>
+            <span class="heading-2">{{'DOCUMENTS' | translate}}</span>
             <!-- <a class=" p-2 p14 btn-bg label-primary btn-style float-end" href="/add-doc-types"> Add Document type</a> -->
             <!-- <button type="button" class="btn p14 btn-bg text-capitalize float-end btn-sm label-primary btn-primary"
                 data-toggle="modal" data-target="#prewiewProfile">Add New Document</button> -->
             <a routerLink="/certificate" class=""> <button type="button"
-                    class="btn text-capitalize float-end btn-primary btn-primary-sm p2">Add New
-                    Document</button></a>
+                    class="btn text-capitalize float-end btn-primary btn-primary-sm p2">{{'ADD_NEW_DOCUMENT' | translate}}</button></a>
         </div>
      <div class="card" *ngIf="!templatesItems">
             <div class="p16 card-body">
-                <p class="mb-1">You have not added certificates yet.</p>
-                <p class="mb-1">Add New to Setup and issue Verified Credentials</p>
+                <p class="mb-1">{{'YOU_DO_NOT_HAVE_CERTIFICATE' | translate}}</p>
+                <p class="mb-1">{{'ADD_NEW_SETUP_AND_ISSUE_CREDENTIALS' | translate}}</p>
             </div>
         </div>
    
@@ -41,8 +66,8 @@
                 class="card card-block mr-2 mb-2 p-4  col-sm-3">
                 <p class="p16 mb-1 font-600">{{item?.name}}</p>
                 <h2 class="font-600">0</h2>
-                <p class="p12 mb-1">Record</p>
-                <a routerLink="/records/{{item?.name}}" class="my-2 fs-14 btn btn-sec-bg submit-button align-self-start">View / Add</a>
+                <p class="p12 mb-1">{{'RECORD' | translate}}</p>
+                <a routerLink="/records/{{item?.name}}" class="my-2 fs-14 btn btn-sec-bg submit-button align-self-start">{{'VIEW_ADD' | translate}}</a>
             </div>
         </div>
 
@@ -67,15 +92,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title primary-text" id="prewiewProfile">Edit issuer details</h6>
+        <h6 class="modal-title primary-text" id="prewiewProfile">{{'EDIT_ISSUER_DETAILS'| translate}}</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
             aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body" *ngIf="fields">
         <form [formGroup]="form2" (ngSubmit)="submit()">
             <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form2"></formly-form>
-            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-sec-bg">Cancel</button>
-            <button type="submit" class="btn btn-primary float-end submit-button" [disabled]="!form2.valid">Save </button>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-sec-bg">{{'CANCEL'| translate}}</button>
+            <button type="submit" class="btn btn-primary float-end submit-button" [disabled]="!form2.valid">{{'SAVE'| translate}} </button>
 
         </form>
       </div>

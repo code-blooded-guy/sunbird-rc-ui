@@ -127,8 +127,12 @@ import { AddCertificateComponent } from './issure/add-certificate/add-certificat
 import { GetRecordsComponent } from './issure/get-records/get-records.component';
 import { AddRecordsComponent } from './issure/add-records/add-records.component';
 import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
+import { PdfViewComponent } from './issure/pdf-view/pdf-view.component';
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
-import { NgJsonEditorModule } from 'ang-jsoneditor' 
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { PdfViewTwoComponent } from './issure/get-records/pdf-view-two/pdf-view-two.component';
+
+
 
 @NgModule({
   declarations: [
@@ -166,7 +170,10 @@ import { NgJsonEditorModule } from 'ang-jsoneditor'
     AddCertificateComponent,
     GetRecordsComponent,
     AddRecordsComponent,
-    PreviewHtmlComponent
+    PreviewHtmlComponent,
+    PdfViewComponent,
+    PdfViewTwoComponent,
+   
   ],
   imports: [
     BrowserModule,

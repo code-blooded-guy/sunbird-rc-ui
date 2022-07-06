@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   item: any;
   templatePath: any;
   entityName: any;
-  constructor(public generalService: GeneralService, public router: Router, public toastMsg: ToastMessageService,
+  constructor(public generalService: GeneralService, public router: Router, public toastMsg: ToastMessageService, public translate: TranslateService,
     private formlyJsonschema: FormlyJsonschema, public schemaService: SchemaService) {
 
   }

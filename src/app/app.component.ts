@@ -28,4 +28,8 @@ export class AppComponent {
     }
 
   }
+  changeTheme(){
+    console.log('helo');
+  }
+
 }
