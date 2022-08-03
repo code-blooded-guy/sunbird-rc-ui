@@ -122,7 +122,7 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
 // import { FaqComponent } from './custom-components/faq/faq.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { initTheme } from './theme.config';
-// import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
+import { GetStartedComponent } from './admin/get-started/get-started.component';
 
 @NgModule({
   declarations: [
@@ -153,7 +153,8 @@ import { initTheme } from './theme.config';
     ScanDocumentComponent,
     ScanQrCodeComponent,
     BrowseDocumentsComponent,
-    AuthImagePipe
+    AuthImagePipe,
+    GetStartedComponent
   ],
   imports: [
     BrowserModule,

@@ -20,11 +20,11 @@ import { ScanQrCodeComponent } from './documents/scan-qr-code/scan-qr-code.compo
 import { BrowseDocumentsComponent } from './documents/browse-documents/browse-documents.component';
 import { PagesComponent } from './pages/pages.component';
 import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-view.component';
-// import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
+import { GetStartedComponent } from './admin/get-started/get-started.component';
 // import { FaqComponent } from './custom-components/faq/faq.component';
 const routes: Routes = [
 // Home
-{ path: '', component: HomeComponent },
+{ path: '', component: GetStartedComponent },
 
 // Auth
 { path: 'login', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
@@ -87,14 +87,15 @@ const routes: Routes = [
 // { path: 'document/detail', component: DocDetailViewComponent, canActivate: [AuthGuard] },
 // { path: 'document/view/:id', component: DocViewComponent, canActivate: [AuthGuard] },
 { path: 'discovery', component: SearchComponent },
-// { path: 'template', component: CreateCertificateComponent },
-
-
 // Installation
 { path: 'install', component: InstallComponent },
 
 // Custom
 // { path: 'faq', component: FaqComponent },
+
+//admin component
+{ path: 'get-started', component: GetStartedComponent },
+
 ];
 
 @NgModule({
