@@ -83,6 +83,16 @@ export class SchemaService {
     return this.dataService.get(req);
   }
 
+  getEntitySchemaJSON() {
+    let url = `.${this.configFolder}/entityConfig.json`;
+    url.replace('//', '/');
+    const req = {
+      url: url
+    };
+
+    return this.dataService.get(req);
+  }
+
 
 }
 

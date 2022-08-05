@@ -123,6 +123,8 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { initTheme } from './theme.config';
 import { GetStartedComponent } from './admin/get-started/get-started.component';
+import { CreateEntityComponent } from './admin/create-entity/create-entity.component';
+import { FormioModule } from 'angular-formio';
 
 @NgModule({
   declarations: [
@@ -154,7 +156,8 @@ import { GetStartedComponent } from './admin/get-started/get-started.component';
     ScanQrCodeComponent,
     BrowseDocumentsComponent,
     AuthImagePipe,
-    GetStartedComponent
+    GetStartedComponent,
+    CreateEntityComponent
   ],
   imports: [
     BrowserModule,
@@ -178,6 +181,7 @@ import { GetStartedComponent } from './admin/get-started/get-started.component';
     ColorPickerModule,
     QuarModule,
     NgxExtendedPdfViewerModule,
+    FormioModule,
     FormlyModule.forRoot({
       extras: { resetFieldOnHide: true },
       wrappers: [{ name: 'form-field-horizontal', component: FormlyHorizontalWrapper },

@@ -94,9 +94,7 @@
     background-color: var(--cardBackground) !important;
     color: var(--primaryTextColor) !important;
     min-height: 180px;
-    text-overflow: hidden;
-   
-    
+    text-overflow: hidden; 
 }
 
 .card-title {
@@ -196,6 +194,14 @@ legend {
 .p12 {
     font-size: 12px !important;
     color: var(--secondaryTextColor);
+}
+
+.l10{
+    font-size: 10px !important;
+}
+
+.l12{
+    font-size: 12px !important;
 }
 
 .btn-bg {

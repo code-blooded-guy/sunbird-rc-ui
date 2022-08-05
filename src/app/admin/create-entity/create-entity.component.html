@@ -1,0 +1,191 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-header nav-b navbar-inverse">
+        <a class="nav-link pl-4" href="" onClick="history.go(-1); return false;"><i
+                class="fa fa-angle-left primary-text"></i> </a>
+        <span class="p16">Getting Started</span>
+    </nav>
+
+    <nav class="card p-3 mt-2  pl-4">
+        <div class="row">
+            <div class="col-md-2">
+                <div>
+                    <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
+                    <span class="l10">STEP 1</span> <br />
+                    <span class="p14 fw-bold">Create Schema</span>
+                </div>
+
+            </div>
+
+            <div class="col-md-2">
+                <div>
+                    <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
+                    <span class="l10">STEP 2</span> <br />
+                    <span class="p14 fw-bold">Configuring Workflows</span>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div>
+                    <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
+                    <span class="l10">STEP 3</span> <br />
+                    <span class="p14 fw-bold">Create VC template</span>
+                </div>
+
+            </div>
+
+            <div class="col-md-2">
+                <div>
+                    <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
+                    <span class="l10">STEP 4</span> <br />
+                    <span class="p14 fw-bold">Test and Launch</span>
+                </div>
+            </div>
+
+        </div>
+
+    </nav>
+</header>
+<div id="body" class="row">
+    <div class=" col-md-3">
+        <div class="wrapper">
+            <!--Top menu -->
+            <div class="sidebar">
+                <ul class="list-unstyled components">
+
+                    <span class="p16 fw-bold pl-4">Entity </span>
+                    <li>
+                        <!-- <a href="/create/{{usecases}}/(entity:{{entity}})">Education Board</a> -->
+                        <a (click)="openEntity('educationboard')">Education Board</a>
+                    </li>
+                    <li>
+                        <!-- <a href="#">Institute</a> -->
+                        <a (click)="openEntity('institute')">Institute</a>
+                    </li>
+                    <li>
+                        <!-- <a href="#">Teacher</a> -->
+                        <a (click)="openEntity('teacher')">Teacher</a>
+                    </li>
+                    <li>
+                        <!-- <a href="#">Student</a> -->
+                        <a (click)="openEntity('student')">Student</a>
+                    </li>
+                    <li>
+                        <button class="m-3 p14 btn btn-sec-bg submit-button text-secondary-color"  data-toggle="modal"
+                        data-target="#addEntity"><i class="fa fa-plus"
+                                aria-hidden="true"></i> Add Entity</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-9 p-2">
+        <div class="d-flex flex-justify-between card-body pr-2 py-2">
+            <div class="heading-2">
+                <h3>{{entityFields?.entityName}}</h3>
+            </div>
+            <div>
+                <button class="float-end p14 btn btn-sec-bg submit-button text-secondary-color"><i
+                        class="fa fa-pencil-square-o" aria-hidden="true"></i> Schema of Entity</button>
+            </div>
+        </div>
+
+        <div>
+            <p class="p16">Fields</p>
+
+            <div class="card">
+
+                <div>
+                    <ul class="list-unstyled p-3">
+                        <li class="fieldBorder p-1">
+                            <input type="text" id="lname" name="lname" class="m-2 fieldInput">
+                            <input type="text" id="lname" name="lname" class="m-2 fieldInput">
+                            <div class=" float-end">
+                                <span class="m-2">
+                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                    <label for="vehicle1"> &nbsp; Mandatory</label>
+                                </span>
+                                <input type="text" id="lname" name="lname" class="m-2 fieldInput">
+                                <i class="fa fa-ellipsis-h m-3 text-grey-color" aria-hidden="true"></i>
+
+                            </div>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+
+                <span class="m-3 p14 submit-button text-secondary-color" data-toggle="modal"
+                data-target="#addFieldModal">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                    Add Field</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Show add field formio modal : start -->
+   
+    <div  class="modal right fade right-xl-modal" id="addFieldModal" tabindex="-1" role="dialog"
+        aria-labelledby="addFieldModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h6 class="modal-title">Hiiiii</h6>
+                   
+                </div>
+                <div class="modal-body">
+                    <!-- <form-builder [form]="myForm" (change)="onChange($event)" (submit)="onSubmit($event)" [options]="options">
+                    </form-builder> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End: Show add field formio modal  -->
+
+    <!-- Modal Start : Save Entity Name -->
+    <div class="modal right fade" id="addEntity" tabindex="-1" role="dialog"
+    aria-labelledby="addEntity">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header pt-4 border-0">
+                <h3 class="heading-5">Add Entity</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="container mt-1">
+                <div class="mb-3">
+                    <span class="l12 fw-bold">Enter Entity Name</span>
+                    <input [(ngModel)]="entityName" class="w-100 input-field modal-input-field p14 p-2 inputField"
+                        placeholder="Enter Entity name" type="text" />
+                </div>
+
+                <div class="mt-2">
+                    <span class="l12 fw-bold">Enter Description<span
+                            class="text-muted">  (optional)</span></span>
+                    <textarea [(ngModel)]="description"
+                        class="w-100 desc input-field modal-input-field p14 pl-3 inputField"
+                        ></textarea>
+                        <span class="l12 text-grey-color">Description about the entity</span>
+                </div>
+
+
+                <div class="mt-4">
+                    <button  data-dismiss="modal" aria-label="Close"
+                        class="btn text-capitalize float-end btn-primary btn-primary-sm p1">Save</button>
+                    <!-- <button class="close" data-dismiss="modal" aria-label="Close"
+                        class="btn text-capitalize float-end btn-primary btn-primary-sm p1 sb-text-primary mr-2 bg-none">Cancel</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Modal End : Save Entity Name -->
+
+
+
+</div>

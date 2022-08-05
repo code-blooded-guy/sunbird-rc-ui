@@ -1,0 +1,78 @@
+.next-arrow {
+    color: #CCCCCC;
+}
+
+.wrapper .sidebar{
+    background: rgb(255, 255, 255);
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.wrapper .sidebar ul li a{
+    display: block;
+    padding: 13px 30px;
+    border-bottom: 1px solid #c6ccd1;
+    color: #000000;
+    font-size: 16px;
+    position: relative;
+}
+
+.wrapper .sidebar ul li a .icon{
+    color: #dee4ec;
+    width: 30px;
+    display: inline-block;
+}
+
+.wrapper .sidebar ul li a:hover,
+.wrapper .sidebar ul li a.active{
+    color: #0c7db1;
+
+    background:white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.wrapper .sidebar ul li a:hover .icon,
+.wrapper .sidebar ul li a.active .icon{
+    color: #0c7db1;
+}
+
+.wrapper .sidebar ul li a:hover:before,
+.wrapper .sidebar ul li a.active:before{
+    display: block;
+}
+
+
+
+/* side menu  : start*/
+
+.fieldBorder{
+
+background: #F9F9F9;
+border: 1px solid #DDDDDD;
+border-radius: 4px;
+}
+
+.fieldInput {
+background: #FFFFFF;
+border: 1px solid #EFEFEF;
+border-radius: 4px;
+}
+
+/*-----------------------------Add field modal css  --------------------------------------*/
+
+
+.container{
+    padding-bottom: 40px !important;
+}
+
+.modal-input-field {
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    border-radius: 4px;
+}

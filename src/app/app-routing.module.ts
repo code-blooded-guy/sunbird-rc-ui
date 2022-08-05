@@ -21,6 +21,8 @@ import { BrowseDocumentsComponent } from './documents/browse-documents/browse-do
 import { PagesComponent } from './pages/pages.component';
 import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-view.component';
 import { GetStartedComponent } from './admin/get-started/get-started.component';
+import { CreateEntityComponent } from '../app/admin/create-entity/create-entity.component';
+
 // import { FaqComponent } from './custom-components/faq/faq.component';
 const routes: Routes = [
 // Home
@@ -95,6 +97,12 @@ const routes: Routes = [
 
 //admin component
 { path: 'get-started', component: GetStartedComponent },
+{ path: 'create-entity', component: CreateEntityComponent },
+{ path: 'create/:usecase', component: CreateEntityComponent },
+{ path: 'create/:usecase/entity/:entity', component: CreateEntityComponent },
+
+
+
 
 ];
 
