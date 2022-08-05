@@ -93,6 +93,10 @@
 .card .card-body {
     background-color: var(--cardBackground) !important;
     color: var(--primaryTextColor) !important;
+    min-height: 180px;
+    text-overflow: hidden;
+   
+    
 }
 
 .card-title {
@@ -173,6 +177,7 @@ formly-autocomplete-type,
 .form-group,
 .form-control {
     font-size: 14px !important;
+    text-overflow: ellipsis;
 }
 
 .p16,
