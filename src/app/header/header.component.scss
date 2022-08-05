@@ -135,3 +135,23 @@ hr {
     }
     
 }
+.circle-login{
+position: absolute;
+width: 40px;
+height: 40px;
+right: 48px;
+top: 8px;
+background: #EFEFEF;
+border-radius: 50%;
+color:black;
+text-align: center;
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    
+}
+
+.center{
+    position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+}

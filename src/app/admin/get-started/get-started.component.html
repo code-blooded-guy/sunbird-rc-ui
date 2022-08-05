@@ -3,12 +3,12 @@
 <div class="wrapper mtop6">
     <!-- Sidebar  -->
     <nav id="sidebar">
-        <ul class="list-unstyled components">
-            <li>
-                <a href="#">Get Started</a>
+        <ul class="list-unstyled components" (click)="clickEvent()"  >
+            <li routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                <a routerLink="/" >Get Started</a>
             </li>
-            <li>
-                <a href="#">Dashboard</a>
+            <li routerLinkActive="active-link">
+                <a routerLink="/a" >Dashboard</a>
             </li>
             <li class="active">
                 <a href="#homeSubmenu">Settings</a>
@@ -43,15 +43,15 @@
 
     <!-- Page Content  -->
     <div id="content" class="p-5">
-
+       
         <h3>Get Started</h3>
         <p class="p14 primary-text">If your scenario is close to our sample use case below, you can to get started immediately.
             Please note you can edit the settings of these usecases as per your requirement.</p>
 
-        <p class="p16 primary-text fw-bold"> <b> Start with sample use case</b> </p>
+        <p class="p16 primary-text fw-bold"> <b> Start with sample use case</b> &nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i> </p>
 
 
-        <div class="row d-flex justify-content-center">
+        <div class="row">
             <div class="col-md-3 mb-3">
                 <div class="card get-card">
                     <div class="card-body">
@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-3">
+             <div class="col-md-3 mb-3">
                 <div class="card get-card">
                     <div class="card-body">
                         <p class="card-title fw-bold pb-1 p16">Sunbird eLocker</p>
@@ -110,8 +110,8 @@
             </div>
         </div>
         <hr/>
-        <p class="p16 primary-text fw-bold">Start with Sunbird RC module </p>
-        <div class="row2  justify-content-center">
+        <p class="p16 primary-text fw-bold">Start with Sunbird RC module &nbsp;<i class="fa fa-question-circle" aria-hidden="true"></i></p>
+       <div class="row">
             <div class="col-md-3">
                 <div class="card get-module-card">
                     <label class="container mp-0">
@@ -121,14 +121,14 @@
                     <div class="card-body">
 
                         <p class="card-title fw-bold pb-1 p16">Attestation & Claim</p>
-                        <p class="card-text lh-lg p14">
-                            Description of this module. Description of this module </p>
-                    
+                        <p class="card-text  lh-lg p14">
+                            Description of this module. Description of this module Description of this module. </p>
+                            
                     </div>
                 </div>
             </div>
            
-            <div class="col-md-3">
+           <div class="col-md-3">
                 <div class="card get-module-card">
                     <label class="container mp-0">
                         <input type="checkbox" checked="checked">
@@ -165,14 +165,14 @@
                     <div class="card-body">
                         <p class="card-title fw-bold pb-1 p16">ELocker Wallet</p>
                         <p class="card-text lh-lg p14">
-                         errerf ferferf  Wallet for verified credentials </p>
+                         woiwqn ijwqioeq Wallet for verified credentials</p>
                        
                     </div>
                 </div>
             </div>
             
         </div>
-        <a href="/form/institute-signup" class="float-end mt-1 p14 btn btn-primary">Start</a>
+        <a href="/form/institute-signup" class="float-end mt-0 p14 btn btn-primary">Start</a> 
     </div>
 
 
