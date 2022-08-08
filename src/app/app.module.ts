@@ -125,6 +125,7 @@ import { initTheme } from './theme.config';
 import { GetStartedComponent } from './admin/get-started/get-started.component';
 import { CreateEntityComponent } from './admin/create-entity/create-entity.component';
 import { FormioModule } from 'angular-formio';
+import { ConfigWorkflowComponent } from './admin/config-workflow/config-workflow.component';
 
 @NgModule({
   declarations: [
@@ -157,7 +158,8 @@ import { FormioModule } from 'angular-formio';
     BrowseDocumentsComponent,
     AuthImagePipe,
     GetStartedComponent,
-    CreateEntityComponent
+    CreateEntityComponent,
+    ConfigWorkflowComponent
   ],
   imports: [
     BrowserModule,
