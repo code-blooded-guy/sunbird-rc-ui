@@ -126,6 +126,9 @@ import { GetStartedComponent } from './admin/get-started/get-started.component';
 import { CreateEntityComponent } from './admin/create-entity/create-entity.component';
 import { FormioModule } from 'angular-formio';
 import { ConfigWorkflowComponent } from './admin/config-workflow/config-workflow.component';
+import { AddFieldFormComponent } from './admin/add-field-form/add-field-form.component';
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { CreateVcTemplateComponent } from './admin/create-vc-template/create-vc-template.component' 
 
 @NgModule({
   declarations: [
@@ -159,7 +162,9 @@ import { ConfigWorkflowComponent } from './admin/config-workflow/config-workflow
     AuthImagePipe,
     GetStartedComponent,
     CreateEntityComponent,
-    ConfigWorkflowComponent
+    ConfigWorkflowComponent,
+    AddFieldFormComponent,
+    CreateVcTemplateComponent
   ],
   imports: [
     BrowserModule,
@@ -184,6 +189,7 @@ import { ConfigWorkflowComponent } from './admin/config-workflow/config-workflow
     QuarModule,
     NgxExtendedPdfViewerModule,
     FormioModule,
+    NgJsonEditorModule,
     FormlyModule.forRoot({
       extras: { resetFieldOnHide: true },
       wrappers: [{ name: 'form-field-horizontal', component: FormlyHorizontalWrapper },

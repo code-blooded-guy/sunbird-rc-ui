@@ -23,6 +23,7 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
 import { GetStartedComponent } from './admin/get-started/get-started.component';
 import { CreateEntityComponent } from '../app/admin/create-entity/create-entity.component';
 import { ConfigWorkflowComponent } from './admin/config-workflow/config-workflow.component';
+import { CreateVcTemplateComponent } from './admin/create-vc-template/create-vc-template.component';
 
 // import { FaqComponent } from './custom-components/faq/faq.component';
 const routes: Routes = [
@@ -101,9 +102,8 @@ const routes: Routes = [
 { path: 'create-entity', component: CreateEntityComponent },
 { path: 'create/:usecase', component: CreateEntityComponent },
 { path: 'create/:usecase/entity/:entity', component: CreateEntityComponent },
-{ path:'config-workflow',component: ConfigWorkflowComponent}
-
-
+{ path:'config-workflow',component: ConfigWorkflowComponent},
+{ path: 'create-vc', component: CreateVcTemplateComponent },
 
 ];
 

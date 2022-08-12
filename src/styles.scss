@@ -627,7 +627,7 @@ formly-autocomplete-type .ng-select {
 
 .btn {
     border-radius: 8px !important;
-    text-transform: capitalize !important;
+    text-transform: inherit !important;
     box-shadow: none !important;
 }
 
@@ -799,3 +799,23 @@ label {
 
 
    a, li { cursor: pointer; }
+
+     /*  Json Editor : start*/
+
+  .json-editor, div.jsoneditor-outer , .ace-jsoneditor, textarea.jsoneditor-text{
+    min-height: 400px !important;
+    width: 100%;
+  }
+
+.jsoneditor-menu{
+    display: none;
+}
+
+.mt-6{
+    margin-top: 6rem !important;
+}
+
+.jsoneditor{
+    height: 600px !important;
+}
+ /*  Json Editor : end */
