@@ -21,9 +21,22 @@ export class CreateEntityComponent implements OnInit {
   description: string;
 
 
-  apiEntityName: any = {
-    "educationboard": {
+  apiEntityName: any = [
+    {
       'entityName': "Education Board",
+      "key": "educationboard",
+      "fields": [
+        {
+          'title': "Institute Name"
+        },
+        {
+          'title': "Affiliation Number"
+        }
+      ]
+    },
+    {
+      'entityName': "Institute",
+      "key": "institute",
       "fields": [
         {
           'title': "Institute Name"
@@ -33,7 +46,7 @@ export class CreateEntityComponent implements OnInit {
         }
       ]
     }
-  }
+  ]
 
   entityFieldList: any = [
     {
@@ -54,15 +67,18 @@ export class CreateEntityComponent implements OnInit {
   isAddFormPg: boolean = false;
   isShowJson: boolean = false;
   isCreateVc: boolean = false;
-currentTab : number = 0;
+  currentTab: number = 0;
   steps: any;
-  menuList: any;
-  menus: any;
+  stepList: any;
   isActive: string;
-  active0 : boolean = true;
-  active1 : boolean = false; 
-  active2 : boolean= false;
-  active3 : boolean = false;
+  active0: boolean = true;
+  active1: boolean = false;
+  active2: boolean = false;
+  active3: boolean = false;
+  sideMenu: any;
+  currentMenu: number = 0;
+  menus: any;
+  an_menus: any;
   // entityFieldList: any = [];
 
   constructor(
@@ -84,25 +100,31 @@ currentTab : number = 0;
     this.activeRoute.params.subscribe(params => {
       this.params = params;
 
-      if (this.params.hasOwnProperty('entity')) {
-        this.entity = this.params.entity;
-      }
+      // if (this.params.hasOwnProperty('entity')) {
+      //   this.entity = this.params.entity;
+      // }
 
       if (this.params.hasOwnProperty('usecase')) {
         this.usecase = params.usecase.toLowerCase();
       }
 
-      this.entityFields = this.apiEntityName[this.entity]
+      this.entityFields = this.apiEntityName[0]
 
       //this.getSchemaJSON();
 
       console.log(this.entityFields);
 
       setTimeout(() => {
-        this.menuList = document.querySelector('#menuList');
-        this.menus = this.menuList.querySelectorAll(".tab");
-        this.menus[this.currentTab].classList.add("activeTab");
-        console.log(this.menus[this.currentTab]);
+        this.stepList = document.querySelector('#stepList');
+        this.steps = this.stepList.querySelectorAll(".tab");
+        this.steps[this.currentTab].classList.add("activeTab");
+        console.log(this.steps[this.currentTab]);
+
+        this.sideMenu = document.querySelector('#sideMenu');
+        this.menus = this.sideMenu.querySelectorAll(".menu");
+        this.an_menus = this.menus[this.currentMenu].querySelectorAll(".a-menu");
+        this.an_menus[0].classList.add("activeMenu");
+
       }, 500);
 
 
@@ -110,10 +132,7 @@ currentTab : number = 0;
 
   }
 
-  openEntity(entityName) {
-    let url = "/create/" + this.usecase + "/entity/" + entityName;
-    this.router.navigate([url])
-  }
+
 
   getSchemaJSON() {
     this.schemaService.getEntitySchemaJSON().subscribe((data) => {
@@ -136,18 +155,53 @@ currentTab : number = 0;
     this.isShowJson = !this.isShowJson;
   }
 
-  nextStep()
-  {
-  if(this.currentTab < 3) 
-  {
-    
-    this.menus[this.currentTab].classList.remove("activeTab");
-    this.currentTab += 1;
-    this.menus[this.currentTab].classList.add("activeTab");
-     this['active' + this.currentTab] = true;
-     this['active' + (this.currentTab - 1)] = false;
+  nextStep() {
+    if (this.currentTab < 3) {
+
+      this.steps[this.currentTab].classList.remove("activeTab");
+      this.currentTab += 1;
+      this.steps[this.currentTab].classList.add("activeTab");
+      this['active' + this.currentTab] = true;
+      this['active' + (this.currentTab - 1)] = false;
+    }
   }
-     
+
+  openEntity1(entityName) {
+    let url = "/create/" + this.usecase + "/entity/" + entityName;
+    this.router.navigate([url])
+  }
+
+  openEntity(n) {
+    this.sideMenu = document.querySelector('#sideMenu');
+    this.menus = this.sideMenu.querySelectorAll(".menu");
+    this.an_menus[0].classList.remove("activeMenu");
+    this.currentMenu = n;
+    this.an_menus = this.menus[this.currentMenu].querySelectorAll(".a-menu");
+    this.an_menus[0].classList.add("activeMenu");
+
+    this.entityFields = this.apiEntityName[this.currentMenu]
+
+  }
+
+  createEntity(event) {
+    console.log(event);
+
+    console.log(this.entityName);
+    let str = this.entityName.replace(/\s+/g, '');
+    let key = str.charAt(0).toUpperCase() + str.slice(1)
+    this.apiEntityName.push({
+      'entityName': this.entityName,
+      "key": key,
+      "description": this.description
+    });
+
+    this.entityName = '';
+    this.description = '';
+
+    setTimeout(() => {
+      this.openEntity(this.menus.length);
+
+    }, 500);
   }
 
 
