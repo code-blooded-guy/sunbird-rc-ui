@@ -1,0 +1,50 @@
+<app-header></app-header>
+<!-- Sidebar  -->
+<div class="wrapper mtop6">
+    <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}">
+                <a href="started/get-started" (click)="openMenu('get-started')">Get Started</a>
+            </li>
+            <li routerLinkActive="active-link">
+                <a routerLink="/a">Dashboard</a>
+            </li>
+            <li class="active">
+                <a href="#homeSubmenu">Settings</a>
+                <ul class=" list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="#">Workflow</a>
+                    </li>
+                    <li>
+                        <a href="setting/vc-template">VC template</a>
+                    </li>
+                    <li>
+                        <a href="setting/ownership">Ownership</a>
+                    </li>
+                    <li>
+                        <a href="setting/rules">Rules</a>
+                    </li>
+                    <li>
+                        <a href="setting/theme">Theme</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">Help</a>
+            </li>
+            <li>
+                <a href="#">Account</a>
+            </li>
+
+        </ul>
+    </nav>
+
+
+    <div *ngIf="activeMenu === 'get-started'">
+        <get-started></get-started>
+    </div>
+    <div *ngIf="activeMenu === 'ownership'">
+        <ownership></ownership>
+    </div>
+</div>

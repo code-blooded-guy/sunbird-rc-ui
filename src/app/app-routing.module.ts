@@ -24,11 +24,16 @@ import { GetStartedComponent } from './admin/get-started/get-started.component';
 import { CreateEntityComponent } from '../app/admin/create-entity/create-entity.component';
 import { ConfigWorkflowComponent } from './admin/config-workflow/config-workflow.component';
 import { CreateVcTemplateComponent } from './admin/create-vc-template/create-vc-template.component';
-
+import { OwnershipComponent} from './admin/ownership/ownership.component';
+import { SidemenuComponent } from './admin/sidemenu/sidemenu.component'
 // import { FaqComponent } from './custom-components/faq/faq.component';
 const routes: Routes = [
 // Home
-{ path: '', component: GetStartedComponent },
+{ path: '', component: SidemenuComponent },
+{ path: 'setting/:page', component: SidemenuComponent },
+{ path: 'started/:page', component: SidemenuComponent },
+
+
 
 // Auth
 { path: 'login', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
@@ -104,6 +109,10 @@ const routes: Routes = [
 { path: 'create/:usecase/entity/:entity', component: CreateEntityComponent },
 { path:'config-workflow',component: ConfigWorkflowComponent},
 { path: 'create-vc', component: CreateVcTemplateComponent },
+{ path: 'ownership', component: OwnershipComponent },
+{ path: 'sidemenu', component: SidemenuComponent },
+
+
 
 ];
 

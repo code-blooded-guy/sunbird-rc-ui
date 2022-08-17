@@ -128,7 +128,9 @@ import { FormioModule } from 'angular-formio';
 import { ConfigWorkflowComponent } from './admin/config-workflow/config-workflow.component';
 import { AddFieldFormComponent } from './admin/add-field-form/add-field-form.component';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
-import { CreateVcTemplateComponent } from './admin/create-vc-template/create-vc-template.component' 
+import { CreateVcTemplateComponent } from './admin/create-vc-template/create-vc-template.component';
+import { OwnershipComponent } from './admin/ownership/ownership.component';
+import { SidemenuComponent } from './admin/sidemenu/sidemenu.component' 
 
 @NgModule({
   declarations: [
@@ -164,7 +166,9 @@ import { CreateVcTemplateComponent } from './admin/create-vc-template/create-vc-
     CreateEntityComponent,
     ConfigWorkflowComponent,
     AddFieldFormComponent,
-    CreateVcTemplateComponent
+    CreateVcTemplateComponent,
+    OwnershipComponent,
+    SidemenuComponent
   ],
   imports: [
     BrowserModule,
