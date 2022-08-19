@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-vc-template.component.scss']
 })
 export class CreateVcTemplateComponent implements OnInit {
-
+  thumbnailItems : any = [{
+    "thumbnailUrl" : "/assets/images/thumbnail.png"
+  },
+  {
+    "thumbnailUrl" : "/assets/images/thumbnail.png"
+  }]
   constructor() { }
 
   ngOnInit(): void {

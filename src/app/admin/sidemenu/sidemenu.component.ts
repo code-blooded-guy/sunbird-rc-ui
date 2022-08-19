@@ -12,6 +12,10 @@ export class SidemenuComponent implements OnInit {
 status: boolean = false;
 activeMenu: string = 'get-started';
   params: any;
+  sideMenu: any;
+  menus: any;
+  an_menus: any;
+  currentMenu: number = 0;
 constructor(
   private activeRoute: ActivatedRoute
 ) { }

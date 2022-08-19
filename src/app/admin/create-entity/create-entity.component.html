@@ -5,51 +5,57 @@
         <span class="p16">Getting Started</span>
     </nav>
 
-    <nav class="card mt-0 p-2 ml-32" *ngIf="!isAddFormPg">
+    <nav class="card mt-0 p-2 ml-32" [hidden]="isAddFormPg">
 
         <ul id="stepList">
             <li class="col-md-2 tab" id="step1"><strong>
                     <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
                     <span class="l10">STEP 1</span> <br />
                     <span class="p14 fw-bold">Create Schema</span>
-            </strong></li>
+                </strong></li>
             <li id="step2" class="col-md-2 tab"><strong>
                     <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
                     <span class="l10">STEP 2</span> <br />
-                   <span class="p14 fw-bold">Configuring Workflows</span> 
-            </strong></li>
-            <li id="step3"  class="col-md-2 tab"><strong>
+                    <span class="p14 fw-bold">Configuring Workflows</span>
+                </strong></li>
+            <li id="step3" class="col-md-2 tab"><strong>
                     <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
                     <span class="l10">STEP 3</span> <br />
                     <span class="p14 fw-bold">Create VC template</span>
-            </strong></li>
-            <li id="step4"  class="col-md-2 tab"><strong>
+                </strong></li>
+            <li id="step4" class="col-md-2 tab"><strong>
                     <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
                     <span class="l10">STEP 4</span> <br />
+                    <span class="p14 fw-bold">Ownership</span>
+                </strong></li>
+            <li id="step5" class="col-md-2 tab"><strong>
+                    <i class="float-end fa fas fa-chevron-right text-grey-color mt-3 fs-3 next-arrow"></i>
+                    <span class="l10">STEP 5</span> <br />
                     <span class="p14 fw-bold">Test and Launch</span>
-            </strong></li>
+                </strong></li>
         </ul>
 
-       
+
 
     </nav>
 </header>
 <div id="schemaEntity" class="container mt-1 ml-12">
-    <div class="row"  *ngIf="!isAddFormPg">
+    <div class="row" *ngIf="!isAddFormPg">
         <div class="col-md-3">
             <div class="wrapper">
                 <!--Top menu -->
                 <div class="sidebar">
                     <p class="p16 fw-bold pl-3 text-uppercase">Entity </p>
 
-                    <ul id="sideMenu" class="list-unstyled components" >
-                       
-                        <li  class="menu" (click)="openEntity(i)" *ngFor="let menuItem of apiEntityName; let i = index">
-                            <a class="a-menu" > {{menuItem?.entityName}}
-                            <i class="fa fa-ellipsis-h text-grey-color float-end mt-1 p14" aria-hidden="true"></i>
-                        </a>
+                    <ul id="sideMenu" class="list-unstyled components">
+
+                        <li class="menu" (click)="openEntity(i)" *ngFor="let menuItem of entityList; let i = index">
+                            <a class="a-menu"> {{menuItem?.entityName}}
+                                <i *ngIf="active0" class="fa fa-ellipsis-h text-grey-color float-end mt-1 p14"
+                                    aria-hidden="true"></i>
+                            </a>
                         </li>
-                      
+
                     </ul>
                     <ul class="list-unstyled">
                         <li>
@@ -57,13 +63,13 @@
                                 data-toggle="modal" data-target="#addEntity"><i class="fa fa-plus"
                                     aria-hidden="true"></i> Add Entity</button>
                         </li>
-                        <li >
+                        <!-- <li >
                             <a> Common
                             <i class="fa fa-ellipsis-h text-grey-color float-end mt-1 p14" aria-hidden="true"></i>
                         </a>
-                        </li>
+                        </li> -->
                     </ul>
-                   
+
                 </div>
 
             </div>
@@ -131,8 +137,8 @@
                             </li>
                         </ul>
 
-                       
-                      
+
+
                         <!-- <span class="m-3 p14 mbtn-10 submit-button text-secondary-color" data-toggle="modal"
                     data-target="#addFieldModal">
                     <i class="fa fa-plus" aria-hidden="true"></i>
@@ -143,7 +149,7 @@
                             Add Field</span>
                     </div>
 
-                   
+
                 </div>
                 <div *ngIf="isShowJson">
                     <div class="">
@@ -151,13 +157,15 @@
                         <json-editor [options]="editorOptions" [data]="jsonFields"></json-editor>
                         <footer class="footer fixed-bottom">
                             <div class="container-fluid">
-                              <div>
-                                <button  class="btn text-capitalize float-end btn-primary btn-primary-sm px-3 my-2">Save</button>
-                                <button (click)="showJson()" class="btn btn-sec-bg float-end submit-button px-3 my-2">Cancel</button>
-     
+                                <div>
+                                    <button
+                                        class="btn text-capitalize float-end btn-primary btn-primary-sm px-3 my-2">Save</button>
+                                    <button (click)="showJson()"
+                                        class="btn btn-sec-bg float-end submit-button px-3 my-2">Cancel</button>
+
+                                </div>
                             </div>
-                            </div>
-                          </footer>
+                        </footer>
 
                         <!-- <json-editor [options]="editorOptions" style="min-height: 700px;" [data]="jsonFields"
                       [(ngModel)]="jsonFields"></json-editor> -->
@@ -167,23 +175,28 @@
 
             <div class="p-3" *ngIf="active0 && !entityFieldList.length">
                 <p class="p16 fw-bold"> No schema added yet.</p>
-                <p class="p14">Please add entity level schema. You can also add common schema example address, field name and field name which can be used or references in other schemas.</p>
+                <p class="p14">Please add entity level schema. You can also add common schema example address, field
+                    name and field name which can be used or references in other schemas.</p>
 
             </div>
 
             <div *ngIf="active1">
                 <config-workflow></config-workflow>
             </div>
-        
-            
-        
-            <div  *ngIf="active2">
+
+
+
+            <div *ngIf="active2">
                 <create-vc-template></create-vc-template>
+            </div>
+
+            <div *ngIf="active3">
+                <ownership></ownership>
             </div>
 
         </div>
 
-       
+
     </div>
 
 
@@ -192,27 +205,6 @@
             (backEvent)="goBackEvent($event)"></add-field-form>
     </div>
 
-
-    <!-- Show add field formio modal : start -->
-
-    <!-- <div  class="modal right fade right-xl-modal" id="addFieldModal" tabindex="-1" role="dialog"
-        aria-labelledby="addFieldModal">
-        <div class="modal-dialog modal-dialog-field" role="document">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h6 class="modal-title">Add Field</h6>
-                   
-                </div>
-                <div class="modal-body">
-                   
-                    <form-builder [form]="myForm" [options]="options" (change)="onChange($event)">
-                    </form-builder>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- End: Show add field formio modal  -->
 
     <!-- Modal Start : Save Entity Name -->
     <div class="modal right fade" id="addEntity" tabindex="-1" role="dialog" aria-labelledby="addEntity">
@@ -240,7 +232,8 @@
 
                     <div class="mt-4">
                         <button data-dismiss="modal" aria-label="Close"
-                            class="btn text-capitalize float-end btn-primary btn-primary-sm p1" (click)="createEntity($event)">Save</button>
+                            class="btn text-capitalize float-end btn-primary btn-primary-sm p1"
+                            (click)="createEntity($event)">Save</button>
                         <!-- <button class="close" data-dismiss="modal" aria-label="Close"
                         class="btn text-capitalize float-end btn-primary btn-primary-sm p1 sb-text-primary mr-2 bg-none">Cancel</button> -->
                     </div>
@@ -251,14 +244,17 @@
 
     <footer class="footer fixed-bottom">
         <div class="container-fluid">
-          <div>
-     
-            <button (click)="nextStep()" class="btn text-capitalize float-end btn-primary btn-primary-sm px-3 my-2">Save and Next</button>
-            <button  *ngIf="active1" class="btn btn-sec-bg float-end submit-button px-3 my-2 ml-2 mr-2 ">Skip</button>  &nbsp;
-            <button *ngIf="active2" class="btn  float-end btn-primary btn-primary-sm px-3 my-2 ml-2 mr-2">Save as Draft</button> &nbsp;
+            <div>
 
+                <button (click)="nextStep()"
+                    class="btn text-capitalize float-end btn-primary btn-primary-sm px-3 my-2">Save and Next</button>
+                <button *ngIf="active1"
+                    class="btn btn-sec-bg float-end submit-button px-3 my-2 ml-2 mr-2 ">Skip</button> &nbsp;
+                <button *ngIf="active2 || active3"
+                    class="btn  float-end btn-primary btn-primary-sm px-3 my-2 ml-2 mr-2">Save as Draft</button> &nbsp;
+
+            </div>
         </div>
-        </div>
-      </footer>
+    </footer>
 </div>
 <!-- Modal End : Save Entity Name -->

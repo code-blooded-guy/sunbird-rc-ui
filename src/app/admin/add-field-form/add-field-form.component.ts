@@ -15,20 +15,20 @@ export class AddFieldFormComponent implements OnInit {
 
 
   @Input() jsonSchema;
- 
 
-  entityFieldList : any = [
-       {
+
+  entityFieldList: any = [
+    {
       "type": "string",
       "title": "Plot",
       "required": true
-      },
-      {
+    },
+    {
       "type": "string",
       "title": "Street"
-      }
+    }
   ]
-    
+
   entityFields: any;
   propertyArr: any;
   jsonFields: any;
@@ -37,14 +37,14 @@ export class AddFieldFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-   // this.formioJsonBuild(this.jsonSchema);
+    // this.formioJsonBuild(this.jsonSchema);
   }
 
   onSubmit(event) { }
 
   formioJsonBuild(jsonFields) {
 
-   
+
     this.jsonFields = jsonFields;
     this.jsonTitle = jsonFields['title'];
     let jsonSchema = jsonFields.definitions[this.jsonTitle].properties;
@@ -185,29 +185,28 @@ export class AddFieldFormComponent implements OnInit {
 
   onChange(event) {
 
-    console.log({event});
+    console.log({ event });
 
     if (event.type == 'saveComponent' || event.type == "addComponent" || event.type == 'deleteComponent') {
-   this.entityFields =  this.formioJsonToPlainJSONSchema(event, event.form.components);
+      this.entityFields = this.formioJsonToPlainJSONSchema(event, event.form.components);
       let _self = this;
-   Object.keys(this.entityFields).forEach(function (key) {
-     console.log({key});
-     _self.entityFieldList.push({
-       'key' : key,
-       'title' : _self.entityFields[key].title,
-       'type': _self.entityFields[key].type,
-       'required' : _self.entityFields[key].required,
+      Object.keys(this.entityFields).forEach(function (key) {
+        console.log({ key });
+        _self.entityFieldList.push({
+          'key': key,
+          'title': _self.entityFields[key].title,
+          'type': _self.entityFields[key].type,
+          'required': _self.entityFields[key].required,
 
-     })
-   })
+        })
+      })
 
-   console.log(this.entityFieldList);
+      console.log(this.entityFieldList);
     }
   }
 
-  viewField()
-  {
-    alert('view');
+  viewField() {
+    //alert('view');
   }
 
   formioJsonToPlainJSONSchema(event, components) {
@@ -215,19 +214,19 @@ export class AddFieldFormComponent implements OnInit {
 
     components.forEach(element => {
 
-      if ((event.type == "addComponent" || event.type == 'saveComponent') ) {
+      if ((event.type == "addComponent" || event.type == 'saveComponent')) {
         let temp = element.label.replaceAll(/\s/g, '');
 
         element.key = temp.charAt(0).toLowerCase() + temp.slice(1);
         if (element.type == 'container') {
-         // jsonDefination.properties[element.key] = { 'type': 'object' };
+          // jsonDefination.properties[element.key] = { 'type': 'object' };
         }
       }
 
       tempFjson[element.key] = this.signleFieldData(element);
       if (element.hasOwnProperty('validate') && element.validate.required == true) {
         tempFjson[element.key]['required'] = true;
-       // this.jsonFields.definitions[this.jsonTitle].required.push(element.key);
+        // this.jsonFields.definitions[this.jsonTitle].required.push(element.key);
       }
 
       if (element.type == 'container') {
@@ -239,7 +238,7 @@ export class AddFieldFormComponent implements OnInit {
           tempFjson[element.key] = this.arrayTypeFieldData(element);
         }
 
-      } if (element.type == 'select' ) {
+      } if (element.type == 'select') {
         tempFjson[element.key] = {
           "type": "string",
           "title": element.label,
@@ -260,45 +259,45 @@ export class AddFieldFormComponent implements OnInit {
           "title": element.label,
           "default": false
         }
-      }  if (element.type == 'selectboxes') {
-        tempFjson[element.key] = {  
+      } if (element.type == 'selectboxes') {
+        tempFjson[element.key] = {
           type: 'select',
-        templateOptions: {
-          label: element.label,
-          multiple: true,
-          options: element['values']
-        }
-      //   tempFjson[element.key] = {
-      //     "type": "array",
-      //   "title": element.label,
-      //   "uniqueItems": true,
-      //   "items": {
-      //     "type": "string",
-      //     "enum": element['values']
-      //   }
-      // }
-      } 
-    }if (element.type == 'radio') {
-      /*  tempFjson[element.key] = {
-          "type": "radio",
-          "title": element.label,
-          "templateOptions": {
-            "options": element['values']
+          templateOptions: {
+            label: element.label,
+            multiple: true,
+            options: element['values']
           }
-        }*/
+          //   tempFjson[element.key] = {
+          //     "type": "array",
+          //   "title": element.label,
+          //   "uniqueItems": true,
+          //   "items": {
+          //     "type": "string",
+          //     "enum": element['values']
+          //   }
+          // }
+        }
+      } if (element.type == 'radio') {
+        /*  tempFjson[element.key] = {
+            "type": "radio",
+            "title": element.label,
+            "templateOptions": {
+              "options": element['values']
+            }
+          }*/
 
-        tempFjson[element.key] = { 
-           "enum":element['values'],
-           "title": element.label,
-        "widget": {
-          "formlyConfig": {
-            "type": "radio"
+        tempFjson[element.key] = {
+          "enum": element['values'],
+          "title": element.label,
+          "widget": {
+            "formlyConfig": {
+              "type": "radio"
+            }
           }
         }
       }
-    }
     });
-console.log({tempFjson});
+    console.log({ tempFjson });
     return tempFjson;
   }
 
@@ -414,11 +413,10 @@ console.log({tempFjson});
     this.newItemEvent.emit(data);
   }
 
-  cancel()
-  {
+  cancel() {
     this.backEvent.emit();
 
   }
-  
+
 
 }

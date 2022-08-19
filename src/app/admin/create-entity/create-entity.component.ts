@@ -20,7 +20,7 @@ export class CreateEntityComponent implements OnInit {
   entityName: string;
   description: string;
 
-
+  entityList : any;
   apiEntityName: any = [
     {
       'entityName': "Education Board",
@@ -75,6 +75,7 @@ export class CreateEntityComponent implements OnInit {
   active1: boolean = false;
   active2: boolean = false;
   active3: boolean = false;
+  active4: boolean = false;
   sideMenu: any;
   currentMenu: number = 0;
   menus: any;
@@ -93,10 +94,6 @@ export class CreateEntityComponent implements OnInit {
     this.editorOptions.history = true;
     this.editorOptions.onChange = () => this.jsonEditor.get();
 
-
-
-
-
     this.activeRoute.params.subscribe(params => {
       this.params = params;
 
@@ -110,7 +107,7 @@ export class CreateEntityComponent implements OnInit {
 
       this.entityFields = this.apiEntityName[0]
 
-      //this.getSchemaJSON();
+      this.getSchemaJSON();
 
       console.log(this.entityFields);
 
@@ -136,9 +133,26 @@ export class CreateEntityComponent implements OnInit {
 
   getSchemaJSON() {
     this.schemaService.getEntitySchemaJSON().subscribe((data) => {
-      this.SchemaUrl = data.entitySchema[this.usecase + "SchemaUrl"];
-      console.log(this.SchemaUrl);
+      this.SchemaUrl = data['usecase'][this.usecase];
+      this.entityList = data['usecase'][this.usecase]['entity'];
+    this.getEntityFields();
+
+      console.log({data});
     })
+  }
+
+  async getEntityFields()
+  {
+    let url = "https://raw.githubusercontent.com/Sunbird-RC/demo-education-registry/main/schemas/Institute.json";
+   // await fetch( this.entityList[0].schemaUrl)
+   await fetch(url)
+    .then(res => res.json())
+    .then(data => {
+     console.log({data});
+     // data = JSON.parse(data);
+    
+    });
+
   }
 
 
@@ -156,7 +170,7 @@ export class CreateEntityComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.currentTab < 3) {
+    if (this.currentTab < 4) {
 
       this.steps[this.currentTab].classList.remove("activeTab");
       this.currentTab += 1;

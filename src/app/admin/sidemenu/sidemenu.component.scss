@@ -59,7 +59,8 @@ a:focus {
 }
 
 #sidebar.active {
-    margin-left: -250px;
+   margin-left: 0;
+    background-color: #7386D5;
 }
 
 #sidebar .sidebar-header {
@@ -84,7 +85,7 @@ a:focus {
 
 #sidebar ul li a:hover {
     color: #7386D5;
-    background: rgb(0, 0, 0);
+    background: #F6F8FC;
 }
 
 .active-link{
@@ -155,7 +156,7 @@ a.article:hover {
 
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: 0;
     }
 
     #sidebar.active {
@@ -172,5 +173,3 @@ a.article:hover {
 .mtop6 {
     margin-top: 3rem;
 }
-
-
